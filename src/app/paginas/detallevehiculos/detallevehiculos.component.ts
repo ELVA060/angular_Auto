@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ServehiculosService } from '../../servicios/servehiculos.service';
 
 @Component({
   selector: 'app-detallevehiculos',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetallevehiculosComponent implements OnInit {
 
-  constructor() { }
+  autos: any; 
+
+
+  constructor(private route: ActivatedRoute, private servicio:ServehiculosService) { }
 
   ngOnInit() {
+    let codigo = String(this.route.snapshot.paramMap.get("codigo"));
+    this.autos = this.servicio.getAuto(codigo);
+  
   }
 
 }
