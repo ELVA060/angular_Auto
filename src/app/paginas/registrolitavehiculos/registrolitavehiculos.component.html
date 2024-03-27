@@ -1,3 +1,41 @@
-<p>
-  registrolitavehiculos works!
-</p>
+<div class="container">
+  <form [formGroup]="formulario">
+    <legend>Datos de ingreso</legend>
+    <div class="mb-3">
+      <label for="codigo" class="form-label">Codigo:</label>
+      <input type="email" class="form-control" id="codigo" aria-describedby="emailHelp" formControlName="codigo" name="codigo">
+      <span class="text-danger" *ngIf="formulario.controls['codigo'].errors?.['required']">Valor Requerido</span>
+    </div>
+    <div class="mb-3">
+      <label for="marca" class="form-label">Marca:</label>
+      <input type="email" class="form-control" id="marca"formControlName="marca"  name="marca">
+      <span class="text-danger" *ngIf="formulario.controls['codigo'].errors?.['required']">Valor Requerido</span>
+    </div>
+    <div class="mb-3">
+      <label for="modelo" class="form-label">Modelo:</label>
+      <input type="email" class="form-control" id="modelo" formControlName="modelo"  name="modelo">
+    </div>
+    <div class="mb-3">
+      <label for="color" class="form-label">Color:</label>
+      <input type="email" class="form-control" id="color" formControlName="color"  name="color">
+    </div>
+    <div class="mb-3">
+      <label for="precio" class="form-label">Año:</label>
+      <input type="email" class="form-control" id="anio"formControlName="anio"  name="anio">
+    </div>
+    <div class="mb-3">
+      <label for="kilometros" class="form-label">Kilometraje:</label>
+      <input type="number" class="form-control" id="kilometraje" formControlName="kilometraje"  name="kilometraje">
+    </div>
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio:</label>
+      <input type="email" class="form-control" id="precio"formControlName="precio"  name="precio">
+    </div>
+    <div class="mb-3">
+      <label for="kilometros" class="form-label">calificacion:</label>
+      <input type="number" class="form-control" id="calificacion" formControlName="calificacion"  name="calificacion">
+    </div>
+    
+    <button type="submit" class="btn btn-primary"(click)="guardar()">Guardar</button>
+  </form>
+</div>

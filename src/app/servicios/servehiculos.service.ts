@@ -1,71 +1,75 @@
 import { Injectable } from '@angular/core';
 import { Autos } from '../interfaceautos/autos';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable, catchError, map, of } from 'rxjs';
+import { compileClassDebugInfo } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServehiculosService {
-  servlistauto: Autos[] = [{
-    image: "https://www.chevrolet.com.ec/bypass/gmccontenthub/chevrolet/gm-ec/colorizer_joy_sedan/images/colorizer/joy-hb-negro-3-4F.png",
-    codigo: "A001",
-    marca: "Chevrolet",
-    modelo: "Joy Sedán",
-    anio: 2024,
-    color: "negro",
-    kilometraje: 0,
-    precio: "17000",
-    calificacion: 2,
-  },
-  {
-    image: "https://assets-cdn.static-gm.com/Assets/83ec4933-56df-41a8-92b1-5366014876c6/a5908a34-214c-4f0c-b419-23933629d49d/v-1656471565/Desktop.webp",
-    codigo: "A002",
-    marca: "Chevrolet",
-    modelo: "Onix Turbo RS",
-    anio: 2024,
-    color: "blanco",
-    kilometraje: 0,
-    precio: "17000",
-    calificacion: 4,
-  },
-  {
-    image: "https://vehicle-images.dealerinspire.com/stock-images/ford/5689dc835ebd59a2fd5a637d0e1bc678.png",
-    codigo: "A003",
-    marca: "Ford",
-    modelo: "Escape platinum",
-    anio: 2024,
-    color: "negro",
-    kilometraje: 0,
-    precio: "20000",
-    calificacion: 4,
-  },
-  {
-    image: "https://www.toyocosta.com/wp-content/uploads/2022/08/raize-plata.png",
-    codigo: "A003",
-    marca: "Toyota",
-    modelo: "Raize",
-    anio: 2023,
-    color: "plata",
-    kilometraje: 0,
-    precio: "22000",
-    calificacion: 2,
-  },
-  ]
-  
-  url: string = 'https://epico.gob.ec/vehiculo/public/api/';
+   
+  private url: string = 'https://epico.gob.ec/vehiculo/public/api/';
+
   constructor(private http: HttpClient) {}
-  
-  /*getAutos() {
-    return this.servlistauto;
-  }*/
-  getAutos() {
-    return this.http.get<any>(this.url + 'vehiculos/');
+
+  getAutos(): Observable<Autos[]> {
+    return this.http.get<any[]>(this.url+'vehiculos/').pipe(
+      map((response: any) => {
+        console.log(response); 
+        if (Array.isArray(response)) {
+          return response.map(autos => ({
+            image: autos.image,
+            codigo: autos.codigo,
+            marca: autos.marca,
+            modelo: autos.modelo,
+            anio: autos.anio,
+            color: autos.color,
+            kilometraje: autos.kilometraje,
+            precio: autos.precio,
+            calificacion: autos.calificacion
+          }));
+        } else {
+
+          console.error('La respuesta de la API no es un array:', response);
+          return [];
+        }
+      }),
+      catchError((error: any) => {
+        console.error('Error al obtener datos de la API:', error);
+        return of([]);
+      })
+    );
   }
-  getAuto(codigo: string): Autos | undefined {
-    let autos = this.servlistauto.find(ele => ele.codigo === codigo);
-    return autos;
+  getAuto(codigo: number): Observable<Autos | undefined> {
+    return this.http.get<any>(`${this.url}vehiculo/${codigo}`).pipe(
+      map((autos: any) => ({
+        image: autos.image,
+        codigo: autos.codigo,
+        marca: autos.marca,
+        modelo: autos.modelo,
+        anio: autos.anio,
+        color: autos.color,
+        kilometraje: autos.kilometraje,
+        precio: autos.precio,
+        calificacion: autos.calificacion
+      })),
+      catchError((error: any) => {
+        console.error('Error al obtener el vehículo:', error);
+        return of(undefined);
+      })
+    );
   }
-  agregarVehiculo(autos: Autos): void {
-    this.servlistauto.push(autos);
-}}
+
+  agregarVehiculo(autos: Autos): Observable<any> {
+    return this.http.post<any>(this.url + 'vehiculo/', autos);
+  }
+
+  actualizarVehiculo(codigo: Number, autos: Autos): Observable<any> {
+    return this.http.put<any>(`${this.url}vehiculo/${codigo}`, autos);
+  }
+
+  eliminarVehiculo(codigo: Number): Observable<any> {
+    return this.http.delete<any>(`${this.url}vehiculo/${codigo}`);
+  }
+}

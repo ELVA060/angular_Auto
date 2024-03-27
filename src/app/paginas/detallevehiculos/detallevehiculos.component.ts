@@ -8,14 +8,13 @@ import { ServehiculosService } from '../../servicios/servehiculos.service';
   styleUrls: ['./detallevehiculos.component.css']
 })
 export class DetallevehiculosComponent implements OnInit {
-
   autos: any; 
 
 
-  constructor(private route: ActivatedRoute, private servicio:ServehiculosService) { }
+  constructor(private route: ActivatedRoute, private servicio: ServehiculosService) { }
 
   ngOnInit() {
-    let codigo = String(this.route.snapshot.paramMap.get("codigo"));
+    let codigo = Number(this.route.snapshot.paramMap.get("codigo"));
     this.autos = this.servicio.getAuto(codigo);
   
   }

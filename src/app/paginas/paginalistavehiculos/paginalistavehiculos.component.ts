@@ -27,6 +27,8 @@ export class PaginalistavehiculosComponent implements OnInit {
 
 
 
+ 
+    
   ngOnInit(): void {
     this.service.getAutos().subscribe(
       (autos: Autos[]) => {
@@ -39,7 +41,6 @@ export class PaginalistavehiculosComponent implements OnInit {
       }
     )
   }
-
 
 
   buscadorauto() {

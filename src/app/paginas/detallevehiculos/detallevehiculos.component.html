@@ -1,3 +1,49 @@
-<p>
-  detallevehiculos works!
-</p>
+<div class="card">
+  <div class="card-header text-center">
+    <h3> Auto {{autos.marca}} {{autos.modelo}}</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-5">
+        <img src="{{autos.image}}" class="img-fluid img-grande">
+
+      </div>
+
+      <div class="col-6 ">
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">Codigo:</label>
+          <div class="col-sm-10">{{autos.codigo}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">Marca:</label>
+          <div class="col-sm-10">{{autos.marca}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">Modelo:</label>
+          <div class="col-sm-10">{{autos.modelo}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">Color:</label>
+          <div class="col-sm-10">{{autos.color}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">Año:</label>
+          <div class="col-sm-10">{{autos.anio}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">kilometraje:</label>
+          <div class="col-sm-10">{{autos.kilometraje|number}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">Precio:</label>
+          <div class="col-sm-10">{{autos.precio|currency}}</div>
+        </div>
+        <div class="mb-3 row">
+          <label for="staticcodigo" class="col-sm-2 fw-bold">calificacion:</label>
+          <div class="col-sm-10">{{autos.calificacion}}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

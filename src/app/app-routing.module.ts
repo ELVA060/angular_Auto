@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IniciopaginaComponent } from './paginas/iniciopagina/iniciopagina.component';
 import { DetallevehiculosComponent } from './paginas/detallevehiculos/detallevehiculos.component';
-import { registerLocaleData } from '@angular/common';
 import { RegistrolitavehiculosComponent } from './paginas/registrolitavehiculos/registrolitavehiculos.component';
 import { PaginalistavehiculosComponent } from './paginas/paginalistavehiculos/paginalistavehiculos.component';
 
