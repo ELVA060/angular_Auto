@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Autos } from '../interfaceautos/autos';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -51,6 +52,20 @@ export class ServehiculosService {
     calificacion: 2,
   },
   ]
-constructor() { }
-
-}
+  
+  url: string = 'https://epico.gob.ec/vehiculo/public/api/';
+  constructor(private http: HttpClient) {}
+  
+  /*getAutos() {
+    return this.servlistauto;
+  }*/
+  getAutos() {
+    return this.http.get<any>(this.url + 'vehiculos/');
+  }
+  getAuto(codigo: string): Autos | undefined {
+    let autos = this.servlistauto.find(ele => ele.codigo === codigo);
+    return autos;
+  }
+  agregarVehiculo(autos: Autos): void {
+    this.servlistauto.push(autos);
+}}

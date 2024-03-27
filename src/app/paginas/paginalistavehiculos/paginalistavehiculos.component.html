@@ -1,3 +1,48 @@
-<p>
-  paginalistavehiculos works!
-</p>
+<div class="card">
+  <div class="card-header">
+    LISTA DE AUTOS
+  </div>
+  <div class="card-body">
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">AUTOS</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Dime que modelo buscas"[(ngModel)]="buscador"
+      (keyup)="buscadorauto()">
+    </div>
+
+      <div class="btn btn-primary">
+        <button [routerLink]="['/nuevo']"type="button" class="btn btn-primary btn-sm">NUEVO AUTOMOVIL </button>
+      </div>
+      
+ 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><button class="btn btn-primary" type="submit" (click)="toggleImagenes()">MOSTRAR IMAGEN</button></th>
+          <th scope="col">CODIGO</th>
+          <th scope="col">MARCA</th>
+          <th scope="col">MODELO</th>
+          <th scope="col">AÑO</th>
+          <th scope="col">COLOR</th>
+          <th scope="col">KILOMETROS</th>
+          <th scope="col">PRECIO</th>
+          <th scope="col">CALIFICACION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let autos of listafiltrada">
+          <td><img src="{{autos.image}}"class="img-thumbnail" alt="" *ngIf="mostrarImagenes"></td>
+          <td><a [routerLink]="['/autos', autos.codigo]">{{autos.codigo}}</a></td>
+          <td>{{autos.marca}}</td>
+          <td>{{autos.modelo}}</td>
+          <td>{{autos.anio}}</td>
+          <td>{{autos.color}}</td>
+          <td>{{autos.kilometraje|number}}</td>
+          <td>{{autos.precio|currency}}</td>
+          <td><app-estrellas [calificacion]="autos.calificacion"></app-estrellas></td>
+          
+        
+        
+      </tbody>
+    </table>
+  </div>
+</div>
