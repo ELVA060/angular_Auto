@@ -13,14 +13,15 @@ import { RegistrolitavehiculosComponent } from './paginas/registrolitavehiculos/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    AppComponent,PaginalistavehiculosComponent,IniciopaginaComponent,DetallevehiculosComponent,EliminarvehiculoComponent,EditarvehiculoComponent,EstrellasComponent,RegistrolitavehiculosComponent
+    AppComponent,PaginalistavehiculosComponent, IniciopaginaComponent, DetallevehiculosComponent, EliminarvehiculoComponent, EditarvehiculoComponent, EstrellasComponent, RegistrolitavehiculosComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,FormsModule, RouterModule, ReactiveFormsModule, HttpClientModule
+    AppRoutingModule, FormsModule, RouterModule, ReactiveFormsModule, HttpClientModule,FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
