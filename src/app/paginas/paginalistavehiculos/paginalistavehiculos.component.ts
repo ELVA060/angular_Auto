@@ -9,9 +9,6 @@ import { ServehiculosService } from '../../servicios/servehiculos.service';
   styleUrls: ['./paginalistavehiculos.component.css']
 })
 export class PaginalistavehiculosComponent implements OnInit {
-eliminarVehiculo(arg0: string) {
-throw new Error('Method not implemented.');
-}
   faStar = faStar;
   autos: Autos[] = [];
   listafiltrada: Autos[] = [];
@@ -51,10 +48,13 @@ throw new Error('Method not implemented.');
     this.listafiltrada = this.autos.filter((autos) => (autos.marca.toLowerCase().includes(this.buscador)));
   }
 
-  eliminarVehiculo(codigo:string) {
-      this.service.eliminarVehiculo(codigo).subscribe(response => {
-        console.log('Auto eliminado con éxito');
-        // Realiza cualquier acción adicional después de eliminar el auto, como actualizar la lista de autos, etc.
-      }, error => {
-        console.error('Error al eliminar el auto:', error)
-      });}}
+  eliminarVehiculo(codigo: string) {
+    this.service.eliminarVehiculo(codigo).subscribe(() => {
+      console.log('Auto eliminado con éxito');
+      
+    }, error => {
+      console.error('Error al eliminar el auto:', error);
+     
+      
+    });
+  }}
