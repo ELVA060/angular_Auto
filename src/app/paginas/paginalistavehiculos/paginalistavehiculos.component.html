@@ -10,7 +10,7 @@
     </div>
 
       <div class="btn btn-primary">
-        <button [routerLink]="['/nuevo']"type="button" class="btn btn-primary btn-sm">NUEVO AUTOMOVIL </button>
+        <button [routerLink]="['/nuevo']"type="button" class="btn btn-primary">NUEVO AUTOMOVIL </button>
       </div>
       
  
@@ -39,7 +39,8 @@
           <td>{{auto.kilometraje|number}}</td>
           <td>{{auto.precio|currency}}</td>
           <td><app-estrellas [calificacion]="auto.calificacion"></app-estrellas></td>
-          
+          <th scope="col"><button class="btn btn-primary" type="submit"[routerLink]="['/Editar']">Editar</button></th>
+          <th scope="col"><button class="btn btn-primary" type="submit"(click)="eliminarVehiculo('auto.codigo')">Eliminar</button></th>
         
         
       </tbody>

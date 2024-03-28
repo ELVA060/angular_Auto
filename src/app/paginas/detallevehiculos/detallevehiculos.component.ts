@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServehiculosService } from '../../servicios/servehiculos.service';
+import { Autos } from '../../interfaceautos/autos';
 
 @Component({
   selector: 'app-detallevehiculos',
@@ -8,15 +9,17 @@ import { ServehiculosService } from '../../servicios/servehiculos.service';
   styleUrls: ['./detallevehiculos.component.css']
 })
 export class DetallevehiculosComponent implements OnInit {
-  autos: any; 
+  auto: any; 
 
 
   constructor(private route: ActivatedRoute, private servicio: ServehiculosService) { }
 
   ngOnInit() {
-    let codigo = Number(this.route.snapshot.paramMap.get("codigo"));
-    this.autos = this.servicio.getAuto(codigo);
-  
+    let codigo = String(this.route.snapshot.paramMap.get("codigo"));
+    this.auto = this.servicio.getAuto(codigo).subscribe(auto => { // Suscríbete al Observable
+      this.auto = auto; 
+      console.log(this.auto);
+    });
   }
-
 }
+    

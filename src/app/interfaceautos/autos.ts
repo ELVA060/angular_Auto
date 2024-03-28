@@ -1,7 +1,7 @@
 export interface Autos {
 
     image:string;
-    codigo:number;
+    codigo:String;
     marca:string;
     modelo: string;
     anio: number;

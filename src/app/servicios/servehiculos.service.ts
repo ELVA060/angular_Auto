@@ -16,9 +16,8 @@ export class ServehiculosService {
   getAutos(): Observable<Autos[]> {
     return this.http.get<any[]>(this.url+'vehiculos/').pipe(
       map((response: any) => {
-        console.log(response); 
-        if (Array.isArray(response)) {
-          return response.map(autos => ({
+        if (response.data && Array.isArray(response.data)) { // Verificar si la propiedad data existe y es un array
+          return response.data.map((autos: { image: any; codigo: any; marca: any; modelo: any; anio: any; color: any; kilometraje: any; precio: any; calificacion: any; })=> ({
             image: autos.image,
             codigo: autos.codigo,
             marca: autos.marca,
@@ -41,22 +40,11 @@ export class ServehiculosService {
       })
     );
   }
-  getAuto(codigo: number): Observable<Autos | undefined> {
-    return this.http.get<any>(`${this.url}vehiculo/${codigo}`).pipe(
-      map((autos: any) => ({
-        image: autos.image,
-        codigo: autos.codigo,
-        marca: autos.marca,
-        modelo: autos.modelo,
-        anio: autos.anio,
-        color: autos.color,
-        kilometraje: autos.kilometraje,
-        precio: autos.precio,
-        calificacion: autos.calificacion
-      })),
+  getAuto(codigo: String): Observable<Autos> {
+    return this.http.get<Autos>(`${this.url}vehiculo/${codigo}`).pipe(
       catchError((error: any) => {
         console.error('Error al obtener el vehículo:', error);
-        return of(undefined);
+        throw error; // Lanza el error para que pueda ser manejado por el componente que llama a este método
       })
     );
   }
@@ -69,7 +57,7 @@ export class ServehiculosService {
     return this.http.put<any>(`${this.url}vehiculo/${codigo}`, autos);
   }
 
-  eliminarVehiculo(codigo: Number): Observable<any> {
-    return this.http.delete<any>(`${this.url}vehiculo/${codigo}`);
+  eliminarVehiculo(codigo: string): Observable<void> {
+    return this.http.delete<void>(`${this.url}vehiculo/${codigo}`);
   }
 }

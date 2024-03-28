@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { PaginalistavehiculosComponent } from './paginas/paginalistavehiculos/paginalistavehiculos.component';
 import { IniciopaginaComponent } from './paginas/iniciopagina/iniciopagina.component';
 import { DetallevehiculosComponent } from './paginas/detallevehiculos/detallevehiculos.component';
-import { EliminarvehiculoComponent } from './paginas/eliminarvehiculo/eliminarvehiculo.component';
 import { EditarvehiculoComponent } from './paginas/editarvehiculo/editarvehiculo.component';
 import { EstrellasComponent } from './utilitarios/estrellas/estrellas.component';
 import { RegistrolitavehiculosComponent } from './paginas/registrolitavehiculos/registrolitavehiculos.component';
@@ -17,7 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    AppComponent,PaginalistavehiculosComponent, IniciopaginaComponent, DetallevehiculosComponent, EliminarvehiculoComponent, EditarvehiculoComponent, EstrellasComponent, RegistrolitavehiculosComponent,
+    AppComponent,PaginalistavehiculosComponent, IniciopaginaComponent, DetallevehiculosComponent, EditarvehiculoComponent, EstrellasComponent, RegistrolitavehiculosComponent,
   ],
   imports: [
     BrowserModule,

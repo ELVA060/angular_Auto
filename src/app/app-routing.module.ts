@@ -4,13 +4,14 @@ import { IniciopaginaComponent } from './paginas/iniciopagina/iniciopagina.compo
 import { DetallevehiculosComponent } from './paginas/detallevehiculos/detallevehiculos.component';
 import { RegistrolitavehiculosComponent } from './paginas/registrolitavehiculos/registrolitavehiculos.component';
 import { PaginalistavehiculosComponent } from './paginas/paginalistavehiculos/paginalistavehiculos.component';
+import { EditarvehiculoComponent } from './paginas/editarvehiculo/editarvehiculo.component';
 
 const routes: Routes = [
   {
     path: "inicio",
     component: IniciopaginaComponent
   },
-  
+
   {
     path: "autos/:codigo",
     component: DetallevehiculosComponent
@@ -23,6 +24,11 @@ const routes: Routes = [
     path: "",
     component: PaginalistavehiculosComponent
   },
+  {
+    path: "editar",
+    component: EditarvehiculoComponent
+  },
+  
 ];
 
 

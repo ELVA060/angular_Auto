@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editarvehiculo.component.css']
 })
 export class EditarvehiculoComponent implements OnInit {
+formulario: any;
 
   constructor() { }
 
